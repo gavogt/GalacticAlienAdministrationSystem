@@ -12,19 +12,14 @@ namespace GalacticAlienAdministrationSystem
 
         public int visitorCount { get; set; }
 
-        public int facilityID = 25;
+        public new int facilityID = 25;
 
         public bool autoApproval = false;
 
-        public EmbassyFacility(string name, int capacity, string country) : base(name, capacity)
+        public EmbassyFacility(int capacity, string country) : base(capacity)
         {
            
             this.country = country;
-        }
-
-        public void RegisterVisitor()
-        {
-            visitorCount++;
         }
 
         public override string ToString()
@@ -33,7 +28,7 @@ namespace GalacticAlienAdministrationSystem
 
         }
 
-        public bool IsApproved()
+        public new bool IsApproved()
         {
             return autoApproval;
         }

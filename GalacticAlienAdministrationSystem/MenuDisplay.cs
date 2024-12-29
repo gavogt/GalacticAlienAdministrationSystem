@@ -90,15 +90,11 @@ namespace GalacticAlienAdministrationSystem
         {
 
             Facility facilityReturn;
-            FacilityType facilityType;
 
-            string facilityName = null;
             int facilityCapacity = 0;
             string facilityLocation = null;
             int facilitySelection = 0;
 
-            Write("Enter name of facility: ");
-            facilityName = ReadLine();
             Write("Enter capacity for facility: ");
             int.TryParse(ReadLine(), out facilityCapacity);
             Write("Provide any extra information such as location: ");
@@ -119,7 +115,7 @@ namespace GalacticAlienAdministrationSystem
             type = FacilityFactory.ReturnFacilityType(facilitySelection);
 
 
-            facilityReturn = FacilityFactory.CreateFacility(type, facilityName, facilityCapacity, facilityLocation);
+            facilityReturn = FacilityFactory.CreateFacility(type, facilityCapacity, facilityLocation);
             WriteLine($"Created Facility: {facilityReturn.facilityID} with name of {facilityReturn.name} and capacity of {facilityReturn.capacity}");
 
             return facilityReturn;

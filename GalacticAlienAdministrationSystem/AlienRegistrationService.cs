@@ -12,7 +12,6 @@ namespace GalacticAlienAdministrationSystem
     public class AlienRegistrationService : IRegistration
     {
         private Alien _alien;
-        private AlienGroup _alienGroup;
 
         public Alien RegisterAlien(string name, string personalData, string species, string specialRequirements, string visitDuration)
         {

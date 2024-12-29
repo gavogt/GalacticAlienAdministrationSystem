@@ -9,5 +9,6 @@ namespace GalacticAlienAdministrationSystem
     public interface IApprovalBookingStrategyPattern
     {
         public string ApproveBooking(Booking booking);
+
     }
 }

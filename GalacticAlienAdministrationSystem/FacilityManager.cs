@@ -19,15 +19,6 @@ namespace GalacticAlienAdministrationSystem
 
         }
 
-        public void AddFacility(FacilityType facility, string name, int capacity, string extraData)
-        {
-
-            var facilityToList = FacilityFactory.CreateFacility(facility, name, capacity, extraData);
-            _facilityList.Add(facilityToList);
-            WriteLine($"{facility} added");
-
-        }
-
         public void ListFacilities()
         {
             if (!_facilityList.Any())
@@ -42,28 +33,6 @@ namespace GalacticAlienAdministrationSystem
             }
 
             ReadKey();
-        }
-
-        public void RequestBook()
-        {
-            Booking booking = AddBooking();
-
-            AutoApprovalStrategy autoApprovalStrategy = new AutoApprovalStrategy();
-            ManualApprovalStrategy manualApprovalStrategy = new ManualApprovalStrategy();
-
-            if (booking != null)
-            {
-                if(booking.bookingStatus == "approved")
-                {
-                    autoApprovalStrategy.ApproveBooking(booking);
-                }
-                if(booking.bookingStatus == "Under maintenance")
-                {
-                    manualApprovalStrategy.ApproveBooking(booking);
-                }
-                WriteLine($"\nBooking added {booking.bookingID} and status is {booking.bookingStatus} \n");
-                _bookingList.Add(booking);
-            }
         }
 
         public Booking AddBooking()
@@ -86,15 +55,6 @@ namespace GalacticAlienAdministrationSystem
 
             return booking;
 
-        }
-
-        public void ListBookingRequest()
-        {
-            foreach (Booking booking in _bookingList)
-            {
-                WriteLine($"{booking.ToString()}");
-
-            }
         }
 
         public void DisplayFacilites()

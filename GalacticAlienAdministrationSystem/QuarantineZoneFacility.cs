@@ -11,25 +11,13 @@ namespace GalacticAlienAdministrationSystem
         public int quarantineZoneCount { get; set; }
         public string environmentalControls { get; set; }
 
-        public int facilityID = 65;
+        public new int facilityID = 65;
 
         public bool autoApproved = true;
 
-
-
-        public QuarantineZoneFacility(string name, int capacity) : base(name, capacity)
+        public QuarantineZoneFacility(int capacity) : base(capacity)
         {
             environmentalControls = "TOXIC GAS";
-        }
-
-        public string EnvironmentalControls()
-        {
-            return environmentalControls;
-        }
-
-        public void QuarantineZoneCount()
-        {
-            quarantineZoneCount++;
         }
     }
 }

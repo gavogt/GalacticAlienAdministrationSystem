@@ -15,16 +15,6 @@ namespace GalacticAlienAdministrationSystem
         private string _visitDuration;
         private bool _isClearedForEarth;
 
-        public string GetSpecialRequirements()
-        {
-            return _specialRequirements;
-        }
-
-        public string GetSpecies()
-        {
-            return _species;
-        }
-
         public Alien(string name, string personalData, string species, string specialRequirements, string visitDuration)
         {
             _name = name;
@@ -35,11 +25,12 @@ namespace GalacticAlienAdministrationSystem
 
         }
 
-
         public string GetName()
         {
             return _name;
+
         }
+
         public bool ClearedForEarth()
         {
             if (_isClearedForEarth == true)

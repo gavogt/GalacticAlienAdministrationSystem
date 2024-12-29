@@ -11,5 +11,6 @@ namespace GalacticAlienAdministrationSystem
         public string ToString();
 
         public bool IsApproved();
+
     }
 }

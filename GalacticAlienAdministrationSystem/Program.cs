@@ -87,20 +87,20 @@ To create different Facility types (EmbassyFactory, ResearchLabFactory, Quaranti
 Strategy
 Different scheduling or booking rules (e.g., some facilities require manual approval, others auto-approve if capacity is free).
 Could also manage diverse search strategies.
+
 Observer
-
 Notification subsystem where observers (email, cosmic communicator, in-app push) subscribe to events (new booking, booking cancellation, facility maintenance).
+
 Decorator
-
 Adding optional “features” to a facility or an alien’s booking without altering the core class (e.g., special environmental controls, VIP protocls for high-ranking aliens).
+
 Command
-
 Encapsulate booking and scheduling requests as commands, facilitating undo/redo or delayed execution of certain tasks (e.g., sending arrival reminders 24 hours in advance).
+
 Facade
-
 Provide a simplified interface for complex operations (e.g., scheduling logic, species compliance checks, and notifications).
-State
 
+State
 Manage facility or booking states (e.g., Requested, Approved, UnderMaintenance, Closed), controlling transitions in a structured way.
 Feel free to include any other patterns that align with your needs.
 

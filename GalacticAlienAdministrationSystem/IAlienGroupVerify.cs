@@ -9,5 +9,6 @@ namespace GalacticAlienAdministrationSystem
     public interface IAlienGroupVerify
     {
         public bool VerifyGroup(AlienGroup aliens);
+
     }
 }

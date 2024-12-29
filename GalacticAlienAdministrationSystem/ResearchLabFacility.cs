@@ -11,13 +11,11 @@ namespace GalacticAlienAdministrationSystem
         public string researchLabLocation { get; set; }
         public int conductResearch { get; set; }
 
-        public int facilityID = 55;
+        public new int facilityID = 55;
 
         public bool autoapproved = true;
 
-
-
-        public ResearchLabFacility(string name, int capacity, string researchLabLocation) : base(name, capacity)
+        public ResearchLabFacility(int capacity, string researchLabLocation) : base(capacity)
         {
             this.researchLabLocation = researchLabLocation;
 
@@ -26,12 +24,6 @@ namespace GalacticAlienAdministrationSystem
         public override string ToString()
         {
             return base.ToString() + $"Research Lab Location: {researchLabLocation}";
-        }
-
-        public int ConductResearch()
-        {
-            Console.Write("Research number of times has been conducted: ");
-            return conductResearch++;
         }
     }
 }

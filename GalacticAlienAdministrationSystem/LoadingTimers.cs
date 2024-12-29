@@ -13,6 +13,7 @@ namespace GalacticAlienAdministrationSystem
             Console.WriteLine("Loading...");
             Thread.Sleep(2000);
             Console.Clear();
+
         }
     }
 }

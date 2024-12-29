@@ -4,14 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Console;
 
 namespace GalacticAlienAdministrationSystem
 {
-    public class AlienLists : IEnumerable<Alien>
+    public class AlienLists
     {
         private List<Alien> _groupList;
-
-        public IEnumerator<Alien> GetEnumerator() => _groupList.GetEnumerator();
 
         public AlienLists(List<Alien> groupList)
         {
@@ -20,16 +19,14 @@ namespace GalacticAlienAdministrationSystem
 
         public void ListAlienGroups()
         {
-            Console.Clear();
-            Console.WriteLine("=== List of Aliens ===");
+            Clear();
+            WriteLine("=== List of Aliens ===");
             foreach (var group in _groupList)
             {
-                Console.WriteLine($"{group.GetName()}");
+                WriteLine($"{group.GetName()}");
             }
-            Console.ReadKey();
-        }
+            ReadKey();
 
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-        
+        }    
     }
 }

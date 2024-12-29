@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Console;
 
 namespace GalacticAlienAdministrationSystem
 {
@@ -10,14 +11,15 @@ namespace GalacticAlienAdministrationSystem
     {
         public bool Verify(Alien alien)
         {
-            if (alien.ClearedForEarth() == true)
+            if (alien.ClearedForEarth())
             {
 
-                Console.WriteLine("Verified in Alien Service");
+                WriteLine("Verified in Alien Service");
                 return true;
             }
             else
             {
+                WriteLine("Not Verified in Alien Service");
                 return false;
             }
         }

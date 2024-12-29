@@ -10,7 +10,7 @@ namespace GalacticAlienAdministrationSystem
 {
     public class ConsoleUI
     {
-        
+
         public static string PromptForString(string message)
         {
 
@@ -19,7 +19,13 @@ namespace GalacticAlienAdministrationSystem
             WriteLine(message);
 
             consoleInput = ReadLine();
-            return consoleInput;
+
+            if (consoleInput != null)
+            {
+                return consoleInput;
+            }
+
+            return "Error. Please try again.";
 
         }
     }

@@ -19,8 +19,8 @@ namespace GalacticAlienAdministrationSystem
                 1 => new ManualApprovalStrategy(),
                 2 => new AutoApprovalStrategy(),
                 _ => throw new InvalidOperationException("Invalid choice")
-            };
 
+            };
         }
     }
 }

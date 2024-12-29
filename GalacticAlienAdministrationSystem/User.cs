@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace GalacticAlienAdministrationSystem
 {
-    internal class User
+    public class User
     {
         private string _username;
-        private string _password;
-        private string _email;
+
     }
 }

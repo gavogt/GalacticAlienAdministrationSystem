@@ -11,6 +11,7 @@ namespace GalacticAlienAdministrationSystem
         public string ApproveBooking(Booking booking)
         {
             return booking.bookingStatus = "Approved";
+
         }
     }
 }

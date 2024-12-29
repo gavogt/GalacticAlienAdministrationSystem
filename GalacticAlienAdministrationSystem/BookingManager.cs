@@ -13,32 +13,16 @@ namespace GalacticAlienAdministrationSystem
         private Booking _bookings;
         private IApprovalBookingStrategyPattern _approvalBookingStrategyPattern;
         private Facility _facility;
+
         public BookingManager(Booking bookings, IApprovalBookingStrategyPattern approvalStrategy)
         {
             _approvalBookingStrategyPattern = approvalStrategy;
             _bookings = bookings;
         }
 
-        public BookingManager(Facility facility, IApprovalBookingStrategyPattern approvalStrategy)
-        {
-            _approvalBookingStrategyPattern = approvalStrategy;
-            _facility = facility;
-        }
-
         public BookingManager()
         {
             
-        }
-
-        public void AddBookings()
-        {
-            Console.WriteLine($"Adding booking {_bookings.bookingID} to the system");
-            _bookingsList.Add(_bookings);
-        }
-
-        public List<Booking> GetBookingList()
-        {
-            return _bookingsList;
         }
 
         public void ApproveBooking(IFacility facility, Booking booking)

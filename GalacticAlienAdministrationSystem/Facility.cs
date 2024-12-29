@@ -13,12 +13,10 @@ namespace GalacticAlienAdministrationSystem
         public int capacity;
         public bool isApproved { get; set; }
 
-        public Facility(string name, int capacity)
+        public Facility(int capacity)
         {
-            this.name = name;
             this.capacity = capacity;
         }
-
 
         public override string ToString()
         {

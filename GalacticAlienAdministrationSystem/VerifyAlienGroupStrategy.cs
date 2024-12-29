@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Console;
 
 namespace GalacticAlienAdministrationSystem
 {
@@ -12,9 +13,11 @@ namespace GalacticAlienAdministrationSystem
         {
            if(aliens != null)
             {
-                Console.WriteLine("Verified in Group Service");
+                WriteLine("Verified in Group Service");
                 return true;
             }
+
+            WriteLine("Not Verified in Group Service");
            return false;
         }
     }
