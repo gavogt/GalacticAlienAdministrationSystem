@@ -124,5 +124,12 @@ namespace GalacticAlienAdministrationSystem
             return facilityReturn;
             
         }
+
+        public static void PressAnyKey()
+        {
+            WriteLine("Press any key to continue");
+            ReadKey();
+
+        }
     }
 }

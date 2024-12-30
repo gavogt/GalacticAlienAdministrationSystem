@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace GalacticAlienAdministrationSystem
 {
-    public class BookingManager
+    public class BookingManager : IBookingManager
     {
         private List<Booking> _bookingsList = new List<Booking>();
         private Booking _bookings;
         private IApprovalBookingStrategyPattern _approvalBookingStrategyPattern;
         private Facility _facility;
+        private static List<IObserver> _observers = new List<IObserver>();
 
         public BookingManager(Booking bookings, IApprovalBookingStrategyPattern approvalStrategy)
         {
@@ -22,7 +23,7 @@ namespace GalacticAlienAdministrationSystem
 
         public BookingManager()
         {
-            
+
         }
 
         public void ApproveBooking(IFacility facility, Booking booking)
@@ -39,16 +40,22 @@ namespace GalacticAlienAdministrationSystem
 
         public void BookingCreateApprovalCheck()
         {
-            var facility = MenuDisplay.MenuFacilityCreate();
+
+            SMSNotificationSystem sms = new SMSNotificationSystem();
+            EmailNotificationSystem emailNotificationSystem = new EmailNotificationSystem();
+
+            BookingManager bookingManager = new BookingManager();
+
+            bookingManager.AddObserver(sms);
+            bookingManager.AddObserver(emailNotificationSystem);
+
             Booking bookings = new Booking(10, 10, DateTime.Now, DateTime.Now.AddHours(1));
-            var approvalPattern = ReturnApprovalPattern();
-            BookingManager bookingManager = new BookingManager(bookings, approvalPattern);
-            // bookingManager.ApproveBooking(facility, bookings);
-            Administrator admin = new Administrator(1);
-            admin.ManualApproveBooking(facility, bookings);
-            Console.WriteLine($"Booking {bookings.bookingID} has status {bookings.bookingStatus} for {bookings.startDateTime} till {bookings.endDateTime} .");
-            Console.WriteLine("Press any key to continue");
-            Console.ReadKey();
+            Booking bookings2 = new Booking(20, 20, DateTime.Now, DateTime.Now.AddDays(1));
+
+            UpdateBookingStatus(bookings, "Pending");
+            UpdateBookingStatus(bookings2, "Approved");
+
+            MenuDisplay.PressAnyKey();
 
         }
 
@@ -61,6 +68,34 @@ namespace GalacticAlienAdministrationSystem
             approvalPattern = ApprovalPatternFactory.ApprovalStrategy();
 
             return approvalPattern;
+
+        }
+
+        public void AddObserver(IObserver observer)
+        {
+            _observers.Add(observer);
+
+        }
+
+        public void RemoveObserver(IObserver observer)
+        {
+            _observers.Remove(observer);
+
+        }
+
+        public void Notify(Booking booking)
+        {
+            foreach (IObserver observer in _observers)
+            {
+                observer.Update(booking);
+
+            }
+        }
+
+        public void UpdateBookingStatus(Booking booking, string status)
+        {
+            booking.bookingStatus = status;
+            Notify(booking);
 
         }
     }
