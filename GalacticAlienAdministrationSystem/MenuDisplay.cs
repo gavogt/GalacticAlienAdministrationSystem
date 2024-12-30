@@ -6,6 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Console;
+using System.Linq;
 
 namespace GalacticAlienAdministrationSystem
 {
@@ -26,7 +27,8 @@ namespace GalacticAlienAdministrationSystem
             WriteLine("\t4. List all booking");
             WriteLine("\t5. Create a new Facility");
             WriteLine("\t6. Create a new Booking");
-            WriteLine("\t7. exit");
+            WriteLine("\t7. Alien search facility");
+            WriteLine("\t8. Exit");
 
             Write("\nEnter your selection: ");
             menuSelection = Convert.ToInt32(ReadLine());
@@ -35,10 +37,8 @@ namespace GalacticAlienAdministrationSystem
 
         }
 
-        public static void HandleMenuSelection(int menuSelection, AlienRegistrationService ars, List<Alien> listOfAliens, FacilityManager facilityManager, BookingManager bookingManager)
+        public static void HandleMenuSelection(int menuSelection, AlienRegistrationService ars, List<Alien> listOfAliens, FacilityManager facilityManager, BookingManager bookingManager, AlienLists al, FacilityRegistrationService frs)
         {
-
-            AlienLists al = new AlienLists(listOfAliens);
 
             switch (menuSelection)
             {
@@ -53,15 +53,47 @@ namespace GalacticAlienAdministrationSystem
                     al.ListAlienGroups();
                     break;
                 case 4:
-                    facilityManager.ListFacilities();
+                    facilityManager.ListFacilities(frs.ReturnFacility());
                     break;
                 case 5:
-                    MenuFacilityCreate();
+                    Facility facilityCreated = MenuFacilityCreate();
+                    frs.RegisterFacility(facilityCreated);
                     break;
                 case 6:
                     bookingManager.BookingCreateApprovalCheck();
                     break;
                 case 7:
+                    if (listOfAliens != null)
+                    {
+                        al.ListAlienGroups();
+                    }
+                    else
+                    {
+                        WriteLine("List of aliens is empty");
+                    }
+                    Write("Enter Alien ID from group: ");
+                    int.TryParse(ReadLine(), out int alienGroupID);
+                    Alien AlienCaseSeven = ars.ListAliens(alienGroupID, listOfAliens);
+
+                    facilityManager.ListFacilities(frs.ReturnFacility());
+                    Write("Enter Facility ID: ");
+                    int.TryParse(ReadLine(), out int facilityID);
+
+                    Facility facility = facilityManager.ListFacilitiesSearch(facilityID, frs.ReturnFacility());
+
+                    if (AlienCaseSeven != null && facility != null)
+                    {
+                        AlienCaseSeven.SearchFacilities(facility);
+                    }
+                    else
+                    {
+                        WriteLine("Alien or Facility not found");
+                    }
+
+                    ReadKey();
+
+                    break;
+                case 8:
                     Environment.Exit(0);
                     break;
 
@@ -77,6 +109,8 @@ namespace GalacticAlienAdministrationSystem
             AlienRegistrationService ars = new AlienRegistrationService();
             FacilityManager facilityManager = new FacilityManager();
             BookingManager bookingManager = new BookingManager();
+            AlienLists al = new AlienLists(listOfAliens);
+            FacilityRegistrationService frs = new FacilityRegistrationService();
 
             LoadingTimers.LoadingTimer();
 
@@ -84,7 +118,7 @@ namespace GalacticAlienAdministrationSystem
             {
                 int choice = Menu();
 
-                HandleMenuSelection(choice, ars, listOfAliens, facilityManager, bookingManager);
+                HandleMenuSelection(choice, ars, listOfAliens, facilityManager, bookingManager, al, frs);
             }
         }
 
@@ -119,10 +153,10 @@ namespace GalacticAlienAdministrationSystem
 
 
             facilityReturn = FacilityFactory.CreateFacility(type, facilityCapacity, facilityLocation);
-            WriteLine($"Created Facility: {facilityReturn.facilityID} with name of {facilityReturn.name} and capacity of {facilityReturn.capacity}");
+            WriteLine($"Created Facility: {facilityReturn.facilityID} and capacity of {facilityReturn.capacity}");
 
             return facilityReturn;
-            
+
         }
 
         public static void PressAnyKey()

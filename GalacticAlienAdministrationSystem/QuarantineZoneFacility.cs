@@ -15,6 +15,8 @@ namespace GalacticAlienAdministrationSystem
 
         public bool autoApproved = true;
 
+        public new string environmentType = "Methane";
+
         public QuarantineZoneFacility(int capacity) : base(capacity)
         {
             environmentalControls = "TOXIC GAS";

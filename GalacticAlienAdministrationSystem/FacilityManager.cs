@@ -10,8 +10,7 @@ namespace GalacticAlienAdministrationSystem
 {
     public class FacilityManager
     {
-        private List<Facility> _facilityList = new List<Facility>();
-        private Facility _facility;
+
         private List<Booking> _bookingList = new List<Booking>();
 
         public FacilityManager()
@@ -19,20 +18,40 @@ namespace GalacticAlienAdministrationSystem
 
         }
 
-        public void ListFacilities()
+        public void ListFacilities(List<Facility> listOfFacilities)
         {
-            if (!_facilityList.Any())
+            if (!listOfFacilities.Any())
             {
                 WriteLine("No Facilities to list");
             }
 
-            foreach (Facility facility in _facilityList)
+            foreach (Facility facility in listOfFacilities)
             {
                 WriteLine($"FacilityID: {facility.facilityID}");
 
             }
 
             ReadKey();
+        }
+
+        public Facility ListFacilitiesSearch(int facilityID, List<Facility> listOfFacilities)
+        {
+            if (listOfFacilities == null)
+            {
+                WriteLine("List of facilities is null");
+            }
+
+            foreach (Facility facility in listOfFacilities)
+            {
+                if (facility.facilityID == facilityID)
+                {
+
+                    return facility;
+                }
+            }
+
+            return null;
+
         }
 
         public Booking AddBooking()

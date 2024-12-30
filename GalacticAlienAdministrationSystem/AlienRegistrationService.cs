@@ -11,7 +11,8 @@ namespace GalacticAlienAdministrationSystem
 {
     public class AlienRegistrationService : IRegistration
     {
-        private Alien _alien;
+        public Alien _alien;
+        public List<Alien> alienList = new List<Alien>();
 
         public Alien RegisterAlien(string name, string personalData, string species, string specialRequirements, string visitDuration)
         {
@@ -20,10 +21,10 @@ namespace GalacticAlienAdministrationSystem
             return alien;
         }
 
-        public List<Alien> AddAlienToList(Alien alien, List<Alien> _alienList)
-        { 
-            _alienList.Add(alien); 
-            return _alienList;
+        public List<Alien> AddAlienToList(Alien alien, List<Alien> alienList)
+        {
+            alienList.Add(alien);
+            return alienList;
         }
 
         public AlienGroup RegisterAlienGroup(Alien alien)
@@ -31,6 +32,25 @@ namespace GalacticAlienAdministrationSystem
             AlienGroup alienGroup = new AlienGroup(alien);
 
             return alienGroup;
+        }
+
+        public Alien ListAliens(int alienID, List<Alien> alienList)
+        {
+            if (alienList.Count == 0 || alienList == null)
+            {
+                WriteLine("Alien list empty or null");
+            }
+
+            foreach (Alien alien in alienList)
+            {
+                if (alien.GetID() == alienID)
+                {
+                    return alien;
+                }
+            }
+
+            WriteLine($"No alien found with {alienID}");
+            return null;
         }
 
         public Alien AddAlien()

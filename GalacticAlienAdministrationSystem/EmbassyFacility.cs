@@ -16,9 +16,12 @@ namespace GalacticAlienAdministrationSystem
 
         public bool autoApproval = false;
 
+        public new string environmentType = "Oxygen";
+
+
         public EmbassyFacility(int capacity, string country) : base(capacity)
         {
-           
+
             this.country = country;
         }
 
@@ -32,8 +35,6 @@ namespace GalacticAlienAdministrationSystem
         {
             return autoApproval;
         }
-
-
     }
 }
  

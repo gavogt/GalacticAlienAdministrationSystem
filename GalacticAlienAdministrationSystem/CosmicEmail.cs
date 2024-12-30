@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace GalacticAlienAdministrationSystem
 {
-    public class EmailNotificationSystem : IObserver
+    public class CosmicEmail : IObserver
     {
         public void Update(Booking booking)
         {
-            Console.WriteLine($"Email notification: Booking {booking.bookingID} has been {booking.bookingStatus}.");
+            Console.WriteLine($"Cosmic email: Booking {booking.bookingID} has been {booking.bookingStatus}.");
         }
     }
 }

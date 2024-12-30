@@ -20,13 +20,14 @@ namespace GalacticAlienAdministrationSystem
         public void ListAlienGroups()
         {
             Clear();
-            WriteLine("=== List of Aliens ===");
+            WriteLine("\t=== List of Aliens ===");
             foreach (var group in _groupList)
             {
-                WriteLine($"{group.GetName()}");
+                WriteLine($"\tName of the Alien: {group.GetName()} \n\tID of the Alien: {group.GetID()}");
+
             }
             ReadKey();
 
-        }    
+        }
     }
 }

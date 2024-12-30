@@ -11,9 +11,9 @@ namespace GalacticAlienAdministrationSystem
     public class SystemSimulator
     {
         public void RunSimulation()
-        {
+        { 
             MenuDisplay.RunMenuSelection();
 
-        }
+        }    
     }
 }

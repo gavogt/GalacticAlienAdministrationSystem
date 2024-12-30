@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace GalacticAlienAdministrationSystem
 {
-    public class SMSNotificationSystem : IObserver
+    public class GalacticTelepathyMessenger : IObserver
     {
         public void Update(Booking booking)
         {
-            Console.WriteLine($"SMS update of booking. Booking ID: {booking.bookingID} and Booking Status {booking.bookingStatus}");
+            Console.WriteLine($"Galactic Telepathy message Booking ID: {booking.bookingID} and Booking Status {booking.bookingStatus}");
         }
     }
 }

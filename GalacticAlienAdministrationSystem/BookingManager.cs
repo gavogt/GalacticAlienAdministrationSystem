@@ -12,7 +12,6 @@ namespace GalacticAlienAdministrationSystem
         private List<Booking> _bookingsList = new List<Booking>();
         private Booking _bookings;
         private IApprovalBookingStrategyPattern _approvalBookingStrategyPattern;
-        private Facility _facility;
         private static List<IObserver> _observers = new List<IObserver>();
 
         public BookingManager(Booking bookings, IApprovalBookingStrategyPattern approvalStrategy)
@@ -41,13 +40,13 @@ namespace GalacticAlienAdministrationSystem
         public void BookingCreateApprovalCheck()
         {
 
-            SMSNotificationSystem sms = new SMSNotificationSystem();
-            EmailNotificationSystem emailNotificationSystem = new EmailNotificationSystem();
+            GalacticTelepathyMessenger galacticTelepathy = new GalacticTelepathyMessenger();
+            CosmicEmail cosmicEmail = new CosmicEmail();
 
             BookingManager bookingManager = new BookingManager();
 
-            bookingManager.AddObserver(sms);
-            bookingManager.AddObserver(emailNotificationSystem);
+            bookingManager.AddObserver(galacticTelepathy);
+            bookingManager.AddObserver(cosmicEmail);
 
             Booking bookings = new Booking(10, 10, DateTime.Now, DateTime.Now.AddHours(1));
             Booking bookings2 = new Booking(20, 20, DateTime.Now, DateTime.Now.AddDays(1));

@@ -15,6 +15,8 @@ namespace GalacticAlienAdministrationSystem
 
         public bool autoapproved = true;
 
+        public new string environmentType = "Vacuum";
+
         public ResearchLabFacility(int capacity, string researchLabLocation) : base(capacity)
         {
             this.researchLabLocation = researchLabLocation;

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace GalacticAlienAdministrationSystem
 {
-    public abstract class Facility : IFacility
+    public class Facility : IFacility
     {
         public int facilityID = 10; 
-        public string name;
         public int capacity;
+        public string environmentType { get; }
         public bool isApproved { get; set; }
 
         public Facility(int capacity)
@@ -18,14 +18,24 @@ namespace GalacticAlienAdministrationSystem
             this.capacity = capacity;
         }
 
+        protected Facility()
+        {
+            Console.WriteLine("Empty constructor");
+        }
+
         public override string ToString()
         {
-            return $"\t Facility ID: {facilityID}, \n\t Facility Name: {name} Facility Capacity: \n\t{capacity}";
+            return $"\t Facility ID: {facilityID}, \n\t Facility Capacity: {capacity}";
         }
 
         public bool IsApproved()
         {
             return isApproved;
+        }
+
+        public int ReturnCapacity()
+        {
+            return capacity;
         }
     }
 }
