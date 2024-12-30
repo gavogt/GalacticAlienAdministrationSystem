@@ -16,16 +16,19 @@ namespace GalacticAlienAdministrationSystem
         {
             int menuSelection;
 
-            WriteLine("Welcome to the Galactic Alien Administration System!");
-            WriteLine("Please select an option from the menu below:");
-            WriteLine("1. Add a new alien");
-            WriteLine("2. Add an alien to group");
-            WriteLine("3. List all Alien Groups");
-            WriteLine("4. List all booking");
-            WriteLine("5. Create a new Facility");
-            WriteLine("6. Create a new Booking");
-            WriteLine("7. exit");
+            Clear();
 
+            WriteLine("Welcome to the Galactic Alien Administration System!");
+            WriteLine("   Please select an option from the menu below:");
+            WriteLine("\t1. Add a new alien");
+            WriteLine("\t2. Add an alien to group");
+            WriteLine("\t3. List all Alien Groups");
+            WriteLine("\t4. List all booking");
+            WriteLine("\t5. Create a new Facility");
+            WriteLine("\t6. Create a new Booking");
+            WriteLine("\t7. exit");
+
+            Write("\nEnter your selection: ");
             menuSelection = Convert.ToInt32(ReadLine());
 
             return menuSelection;

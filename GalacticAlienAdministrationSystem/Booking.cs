@@ -13,18 +13,29 @@ namespace GalacticAlienAdministrationSystem
         private int _facilityID;
         private int _userID;
         public string bookingStatus = "Not set";
+        public DateTime startDateTime;
+        public DateTime endDateTime;
 
         public Booking(int facilityID, int userID)
         {
-            IncreaseBookingID();
+            bookingID = BookingCounter();
             _facilityID = facilityID;
             _userID = userID;
             bookingStatus = "Pending";
         }
 
-        public void IncreaseBookingID()
+        public Booking(int facilityID, int userID, DateTime startDateTime, DateTime endDateTime)
         {
-            bookingID = _bookCounter++;
+            bookingID = BookingCounter();
+            _facilityID = facilityID;
+            _userID = userID;
+            this.startDateTime = startDateTime;
+            this.endDateTime = endDateTime;
+        }
+
+        public static int BookingCounter()
+        {
+            return _bookCounter++;
         }
 
         public override string ToString()

@@ -40,11 +40,15 @@ namespace GalacticAlienAdministrationSystem
         public void BookingCreateApprovalCheck()
         {
             var facility = MenuDisplay.MenuFacilityCreate();
-            Booking bookings = new Booking(10, 10);
+            Booking bookings = new Booking(10, 10, DateTime.Now, DateTime.Now.AddHours(1));
             var approvalPattern = ReturnApprovalPattern();
             BookingManager bookingManager = new BookingManager(bookings, approvalPattern);
-            bookingManager.ApproveBooking(facility, bookings);
-            Console.WriteLine($"Booking {bookings.bookingID} has status {bookings.bookingStatus} for {facility.name}.");
+            // bookingManager.ApproveBooking(facility, bookings);
+            Administrator admin = new Administrator(1);
+            admin.ManualApproveBooking(facility, bookings);
+            Console.WriteLine($"Booking {bookings.bookingID} has status {bookings.bookingStatus} for {bookings.startDateTime} till {bookings.endDateTime} .");
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
 
         }
 
