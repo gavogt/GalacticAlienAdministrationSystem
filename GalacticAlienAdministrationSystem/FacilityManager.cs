@@ -107,6 +107,14 @@ namespace GalacticAlienAdministrationSystem
 
             }
         }
+
+        public static void ListOfFacilities()
+        {
+            WriteLine("LIST OF FACILITIES");
+            WriteLine("1. Embassy");
+            WriteLine("2. Research Lab");
+            WriteLine("3. Quarantine Zone");
+        }
     }
 
     public enum FacilityType

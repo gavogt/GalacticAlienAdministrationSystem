@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -19,6 +18,18 @@ namespace GalacticAlienAdministrationSystem
 
             Clear();
 
+            MenuList();
+
+            Write("\nEnter your selection: ");
+            int.TryParse(ReadLine(), out menuSelection);
+
+            return menuSelection;
+
+        }
+
+        public static void MenuList()
+        {
+
             WriteLine("Welcome to the Galactic Alien Administration System!");
             WriteLine("   Please select an option from the menu below:");
             WriteLine("\t 1. Add a new alien");
@@ -31,11 +42,6 @@ namespace GalacticAlienAdministrationSystem
             WriteLine("\t 8. Search facility by Environment Type");
             WriteLine("\t 9. Exit");
             WriteLine("\t10. Display current occupancy of facilities");
-
-            Write("\nEnter your selection: ");
-            menuSelection = Convert.ToInt32(ReadLine());
-
-            return menuSelection;
 
         }
 
@@ -154,10 +160,8 @@ namespace GalacticAlienAdministrationSystem
             Write("Provide any extra information such as location: ");
             facilityLocation = ReadLine();
 
-            WriteLine("LIST OF FACILITIES");
-            WriteLine("1. Embassy");
-            WriteLine("2. Research Lab");
-            WriteLine("3. Quarantine Zone");
+            FacilityManager.ListOfFacilities();
+
             WriteLine("Provide Selection for Facility type: ");
             while (facilitySelection < 1 || facilitySelection > 3)
             {
