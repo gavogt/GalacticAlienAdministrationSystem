@@ -17,7 +17,9 @@ namespace GalacticAlienAdministrationSystem
 
         public new string environmentType = "Vacuum";
 
-        public ResearchLabFacility(int capacity, string researchLabLocation) : base(capacity)
+        public new int currentOccupancy = 0;
+
+        public ResearchLabFacility(int capacity, string researchLabLocation, int currentOccupancy) : base(capacity, currentOccupancy)
         {
             this.researchLabLocation = researchLabLocation;
 

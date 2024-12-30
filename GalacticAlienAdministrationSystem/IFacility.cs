@@ -16,5 +16,9 @@ namespace GalacticAlienAdministrationSystem
 
         public string GetEnvironmentType();
 
+        public int GetCapacity();
+
+        public int GetOccupancy();
+
     }
 }

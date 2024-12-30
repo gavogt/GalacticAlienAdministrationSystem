@@ -21,15 +21,16 @@ namespace GalacticAlienAdministrationSystem
 
             WriteLine("Welcome to the Galactic Alien Administration System!");
             WriteLine("   Please select an option from the menu below:");
-            WriteLine("\t1. Add a new alien");
-            WriteLine("\t2. Add an alien to group");
-            WriteLine("\t3. List all Alien Groups");
-            WriteLine("\t4. List all booking");
-            WriteLine("\t5. Create a new Facility");
-            WriteLine("\t6. Create a new Booking");
-            WriteLine("\t7. Search facility by capacity");
-            WriteLine("\t8. Search facility by Environment Type");
-            WriteLine("\t9. Exit");
+            WriteLine("\t 1. Add a new alien");
+            WriteLine("\t 2. Add an alien to group");
+            WriteLine("\t 3. List all Alien Groups");
+            WriteLine("\t 4. List all booking");
+            WriteLine("\t 5. Create a new Facility");
+            WriteLine("\t 6. Create a new Booking");
+            WriteLine("\t 7. Search facility by capacity");
+            WriteLine("\t 8. Search facility by Environment Type");
+            WriteLine("\t 9. Exit");
+            WriteLine("\t10. Display current occupancy of facilities");
 
             Write("\nEnter your selection: ");
             menuSelection = Convert.ToInt32(ReadLine());
@@ -108,6 +109,10 @@ namespace GalacticAlienAdministrationSystem
                 case 9:
                     Environment.Exit(0);
                     break;
+                case 10:
+                    facilityManager.DisplayCurrentOccupancy(frs.ReturnFacility());
+                    ReadKey();
+                    break;
 
                 default:
                     WriteLine("Invalid selection");
@@ -160,11 +165,14 @@ namespace GalacticAlienAdministrationSystem
                 int.TryParse(ReadLine(), out facilitySelection);
             }
 
+            Write("Provide current occupancy of facility: ");
+            int.TryParse(ReadLine(), out int facilityOccupancy);
+
             FacilityType type = FacilityType.None;
             type = FacilityFactory.ReturnFacilityType(facilitySelection);
 
 
-            facilityReturn = FacilityFactory.CreateFacility(type, facilityCapacity, facilityLocation);
+            facilityReturn = FacilityFactory.CreateFacility(type, facilityCapacity, facilityLocation, facilityOccupancy);
             WriteLine($"Created Facility: {facilityReturn.facilityID} and capacity of {facilityReturn.capacity}");
 
             return facilityReturn;

@@ -9,13 +9,13 @@ namespace GalacticAlienAdministrationSystem
 {
     public class FacilityFactory
     {
-        public static Facility CreateFacility(FacilityType facilityType, int capacity, string extraData)
+        public static Facility CreateFacility(FacilityType facilityType, int capacity, string extraData, int currentOccupancy)
         {
             return facilityType switch
             {
-                FacilityType.Embassy => new EmbassyFacility(capacity, extraData),
-                FacilityType.ResearchLab => new ResearchLabFacility(capacity, extraData),
-                FacilityType.QuarantineZone => new QuarantineZoneFacility(capacity),
+                FacilityType.Embassy => new EmbassyFacility(capacity, extraData, currentOccupancy),
+                FacilityType.ResearchLab => new ResearchLabFacility(capacity, extraData, currentOccupancy),
+                FacilityType.QuarantineZone => new QuarantineZoneFacility(capacity, currentOccupancy),
                 _ => throw new ArgumentException("Not a valid Factory creation")
             };
         }

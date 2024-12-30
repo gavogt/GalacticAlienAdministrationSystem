@@ -44,6 +44,18 @@ namespace GalacticAlienAdministrationSystem
             ReadKey();
         }
 
+        public void DisplayCurrentOccupancy(List<Facility> listOfFacilities)
+        {
+
+            foreach (IFacility facility in listOfFacilities)
+            {
+                WriteLine($"\nFacilityID: {facility.GetID()}" +
+                    $"\nFacility capacity: {facility.GetCapacity()}" +
+                    $"\nCurrent occupancy: {facility.GetOccupancy()}");
+
+            }
+        }
+
         public Facility ListFacilitiesSearch(int facilityID, List<Facility> listOfFacilities)
         {
             if (listOfFacilities == null)

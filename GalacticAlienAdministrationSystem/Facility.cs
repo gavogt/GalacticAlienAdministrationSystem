@@ -12,15 +12,37 @@ namespace GalacticAlienAdministrationSystem
         public int capacity;
         public string environmentType = "standard facility";
         public bool isApproved { get; set; }
+        
+        public int currentOccupancy = 0;
 
-        public Facility(int capacity)
+        public Facility(int capacity, int currentOccupancy)
         {
-            this.capacity = capacity;
+            if (capacity > 0 && capacity >= currentOccupancy)
+            {
+                this.currentOccupancy = currentOccupancy;
+                this.capacity = capacity;
+            }
+            else
+            {
+                Console.WriteLine("Not enough capacity for the current occupancy");
+                Console.ReadKey();
+            }
         }
 
         public Facility()
         {
 
+        }
+
+        public int SetCurrentOccupancy(int currentOccupancy)
+        {
+            this.currentOccupancy = currentOccupancy;
+            return currentOccupancy;
+        }
+
+        public int ReturnCurrentOccupancy()
+        {
+            return (capacity - currentOccupancy);
         }
 
         public override string ToString()
@@ -33,7 +55,7 @@ namespace GalacticAlienAdministrationSystem
             return isApproved;
         }
 
-        public int ReturnCapacity()
+        public int GetCapacity()
         {
             return capacity;
         }
@@ -46,6 +68,11 @@ namespace GalacticAlienAdministrationSystem
         public string GetEnvironmentType()
         {
             return environmentType;
+        }
+
+        public int GetOccupancy()
+        {
+            return currentOccupancy;
         }
     }
 }

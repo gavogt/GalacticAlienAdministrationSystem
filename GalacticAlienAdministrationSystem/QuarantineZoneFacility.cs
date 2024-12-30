@@ -17,7 +17,9 @@ namespace GalacticAlienAdministrationSystem
 
         public new string environmentType = "Methane";
 
-        public QuarantineZoneFacility(int capacity) : base(capacity)
+        public new int currentOccupancy = 0;
+
+        public QuarantineZoneFacility(int capacity, int currentOccupancy) : base(capacity, currentOccupancy)
         {
             environmentalControls = "TOXIC GAS";
         }
@@ -31,5 +33,6 @@ namespace GalacticAlienAdministrationSystem
         {
             return environmentType;
         }
+
     }
 }

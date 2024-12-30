@@ -19,7 +19,7 @@ namespace GalacticAlienAdministrationSystem
         public new string environmentType = "Oxygen";
 
 
-        public EmbassyFacility(int capacity, string country) : base(capacity)
+        public EmbassyFacility(int capacity, string country, int currentOccupancy) : base(capacity, currentOccupancy)
         {
 
             this.country = country;
