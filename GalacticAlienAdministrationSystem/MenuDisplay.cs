@@ -27,8 +27,9 @@ namespace GalacticAlienAdministrationSystem
             WriteLine("\t4. List all booking");
             WriteLine("\t5. Create a new Facility");
             WriteLine("\t6. Create a new Booking");
-            WriteLine("\t7. Alien search facility");
-            WriteLine("\t8. Exit");
+            WriteLine("\t7. Search facility by capacity");
+            WriteLine("\t8. Search facility by Environment Type");
+            WriteLine("\t9. Exit");
 
             Write("\nEnter your selection: ");
             menuSelection = Convert.ToInt32(ReadLine());
@@ -94,6 +95,17 @@ namespace GalacticAlienAdministrationSystem
 
                     break;
                 case 8:
+                    Facility facilityEnvironmentSearch = new Facility();
+
+                    facilityManager.ListFacilitiesEnvironmentType(frs.ReturnFacility());
+
+                    Write("Enter Facility ID: ");
+                    int.TryParse(ReadLine(), out int facilityIDEnvironmentSearch);
+
+                    Alien.SearchFacilitiesForEnvironmentType(facilityIDEnvironmentSearch, facilityEnvironmentSearch);
+
+                    break;
+                case 9:
                     Environment.Exit(0);
                     break;
 

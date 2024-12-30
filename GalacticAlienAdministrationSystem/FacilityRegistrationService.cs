@@ -9,7 +9,7 @@ namespace GalacticAlienAdministrationSystem
     public class FacilityRegistrationService
     {
         public List<Facility> facilityList = new List<Facility>();
-
+        List<IFacility> iFacilityList = new List<IFacility>();
         public void RegisterFacility(Facility facility)
         {
             facilityList.Add(facility);
@@ -21,5 +21,10 @@ namespace GalacticAlienAdministrationSystem
             return facilityList;
         }
 
+        public List<IFacility> ReturnIFacility()
+        {
+   
+            return iFacilityList;
+        }
     }
 }

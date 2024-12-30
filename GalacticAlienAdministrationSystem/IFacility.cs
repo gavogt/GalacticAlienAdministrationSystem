@@ -12,5 +12,9 @@ namespace GalacticAlienAdministrationSystem
 
         public bool IsApproved();
 
+        public int GetID();
+
+        public string GetEnvironmentType();
+
     }
 }

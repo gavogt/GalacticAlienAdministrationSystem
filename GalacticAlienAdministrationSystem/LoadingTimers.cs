@@ -11,7 +11,7 @@ namespace GalacticAlienAdministrationSystem
         public static void LoadingTimer()
         {
             Console.WriteLine("Loading...");
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             Console.Clear();
 
         }

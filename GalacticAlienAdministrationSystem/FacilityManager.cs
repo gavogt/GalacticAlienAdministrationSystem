@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using static System.Console;
+﻿using static System.Console;
 
 namespace GalacticAlienAdministrationSystem
 {
@@ -16,6 +10,22 @@ namespace GalacticAlienAdministrationSystem
         public FacilityManager()
         {
 
+        }
+
+        public void ListFacilitiesEnvironmentType(List<Facility> listOfFacilities)
+        {
+            if (!listOfFacilities.Any())
+            {
+                WriteLine("No Facilities to list");
+            }
+
+            foreach (IFacility facility in listOfFacilities)
+            {
+                WriteLine($"FacilityID: {facility.GetID()} and Environment: {facility.GetEnvironmentType()}");
+
+            }
+
+            ReadKey();
         }
 
         public void ListFacilities(List<Facility> listOfFacilities)

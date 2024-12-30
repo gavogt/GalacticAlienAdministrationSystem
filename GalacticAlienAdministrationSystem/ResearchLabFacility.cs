@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GalacticAlienAdministrationSystem
 {
-    public class ResearchLabFacility : Facility
+    public class ResearchLabFacility : Facility, IFacility
     {
         public string researchLabLocation { get; set; }
         public int conductResearch { get; set; }
@@ -26,6 +26,16 @@ namespace GalacticAlienAdministrationSystem
         public override string ToString()
         {
             return base.ToString() + $"Research Lab Location: {researchLabLocation}";
+        }
+
+        public new int GetID()
+        {
+            return facilityID;
+        }
+
+        public new string GetEnvironmentType()
+        {
+            return environmentType;
         }
     }
 }

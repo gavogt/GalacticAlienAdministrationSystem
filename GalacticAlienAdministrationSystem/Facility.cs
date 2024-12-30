@@ -8,9 +8,9 @@ namespace GalacticAlienAdministrationSystem
 {
     public class Facility : IFacility
     {
-        public int facilityID = 10; 
+        public int facilityID = 10;
         public int capacity;
-        public string environmentType { get; }
+        public string environmentType = "standard facility";
         public bool isApproved { get; set; }
 
         public Facility(int capacity)
@@ -18,9 +18,9 @@ namespace GalacticAlienAdministrationSystem
             this.capacity = capacity;
         }
 
-        protected Facility()
+        public Facility()
         {
-            Console.WriteLine("Empty constructor");
+
         }
 
         public override string ToString()
@@ -36,6 +36,16 @@ namespace GalacticAlienAdministrationSystem
         public int ReturnCapacity()
         {
             return capacity;
+        }
+
+        public int GetID()
+        {
+            return facilityID;
+        }
+
+        public string GetEnvironmentType()
+        {
+            return environmentType;
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GalacticAlienAdministrationSystem
 {
-    public class QuarantineZoneFacility : Facility
+    public class QuarantineZoneFacility : Facility, IFacility
     {
         public int quarantineZoneCount { get; set; }
         public string environmentalControls { get; set; }
@@ -20,6 +20,16 @@ namespace GalacticAlienAdministrationSystem
         public QuarantineZoneFacility(int capacity) : base(capacity)
         {
             environmentalControls = "TOXIC GAS";
+        }
+
+        public new int GetID()
+        {
+            return facilityID;
+        }
+
+        public new string GetEnvironmentType()
+        {
+            return environmentType;
         }
     }
 }

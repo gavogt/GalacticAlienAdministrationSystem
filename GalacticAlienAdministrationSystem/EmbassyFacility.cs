@@ -35,6 +35,16 @@ namespace GalacticAlienAdministrationSystem
         {
             return autoApproval;
         }
+
+        public new int GetID()
+        {
+            return facilityID;
+        }
+
+        public new string GetEnvironmentType()
+        {
+            return environmentType;
+        }
     }
 }
- 
+

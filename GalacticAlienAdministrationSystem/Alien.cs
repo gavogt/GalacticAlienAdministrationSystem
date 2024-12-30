@@ -62,13 +62,35 @@ namespace GalacticAlienAdministrationSystem
             }
         }
 
-        public void SearchFacilities(Facility facility)
+        public static void SearchFacilitiesForEnvironmentType(int facilityIDEntered, Facility facility)
         {
 
-            facility.capacity -= 1;
-            _isClearedForEarth = true;
-            WriteLine("Facility has capacity and cleared for Earth");
+            switch (facility.environmentType)
+            {
+                case "Oxygen":
+                    WriteLine("Facility environment is Oxygenated");
+                    break;
+                case "Vacuum":
+                    WriteLine("Facility environment is Vacuumed");
+                    break;
+                case "Methane":
+                    WriteLine("Facility environment is Methaned");
+                    break;
+            }
+        }
 
+        public void SearchFacilities(Facility facility)
+        {
+            if (facility.capacity > 0)
+            {
+                facility.capacity -= 1;
+                _isClearedForEarth = true;
+                WriteLine("Facility has capacity and cleared for Earth");
+            }
+            else
+            {
+                WriteLine("Facility does not have the capacity");
+            }
 
         }
     }
