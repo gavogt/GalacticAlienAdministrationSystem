@@ -14,14 +14,16 @@ namespace GalacticAlienAdministrationSystem
 
         public static int Menu()
         {
-            int menuSelection;
+            int menuSelection = 0;
 
             Clear();
 
             MenuList();
-
-            Write("\nEnter your selection: ");
-            int.TryParse(ReadLine(), out menuSelection);
+            while (menuSelection < 1 || menuSelection > 10)
+            {
+                Write("\nEnter your menu selection #1 - #10: ");
+                int.TryParse(ReadLine(), out menuSelection);
+            }
 
             return menuSelection;
 
@@ -154,6 +156,8 @@ namespace GalacticAlienAdministrationSystem
             int facilityCapacity = 0;
             string facilityLocation = null;
             int facilitySelection = 0;
+            int facilityOccupancy = 0;
+
 
             Write("Enter capacity for facility: ");
             int.TryParse(ReadLine(), out facilityCapacity);
@@ -169,15 +173,29 @@ namespace GalacticAlienAdministrationSystem
                 int.TryParse(ReadLine(), out facilitySelection);
             }
 
+            var config = GlobalConfig.Instance;
+
             Write("Provide current occupancy of facility: ");
-            int.TryParse(ReadLine(), out int facilityOccupancy);
+            facilityOccupancy = Convert.ToInt32(ReadLine());
+
+            while (facilityOccupancy > facilityCapacity || facilityOccupancy > config.maxVisitors || facilityOccupancy < 0)
+            {
+                WriteLine("Provide a number less than capacity and less than 100");
+                facilityOccupancy = Convert.ToInt32(ReadLine());
+            }
+
+            foreach (var prohibitedItems in config.prohibitedItems)
+            {
+                WriteLine($"PROHIBITED ITEM: {prohibitedItems}");
+            }
 
             FacilityType type = FacilityType.None;
             type = FacilityFactory.ReturnFacilityType(facilitySelection);
 
 
             facilityReturn = FacilityFactory.CreateFacility(type, facilityCapacity, facilityLocation, facilityOccupancy);
-            WriteLine($"Created Facility: {facilityReturn.facilityID} and capacity of {facilityReturn.capacity}");
+            WriteLine($"Created Facility ID: {facilityReturn.facilityID} with a capacity of {facilityReturn.capacity}");
+            ReadKey();
 
             return facilityReturn;
 
