@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace GalacticAlienAdministrationSystem
 {
-    public class Facility : IFacility
+    public class Facility : IFacility, IDecorator
     {
         public int facilityID = 10;
         public int capacity;
         public string environmentType = "standard facility";
         public bool isApproved { get; set; }
-        
+
         public int currentOccupancy = 0;
 
         public Facility(int capacity, int currentOccupancy)
@@ -73,6 +73,11 @@ namespace GalacticAlienAdministrationSystem
         public int GetOccupancy()
         {
             return currentOccupancy;
+        }
+
+        public string GetDetails()
+        {
+            return "I am a base facility";
         }
     }
 }

@@ -173,6 +173,7 @@ namespace GalacticAlienAdministrationSystem
                 int.TryParse(ReadLine(), out facilitySelection);
             }
 
+            // Singleton
             var config = GlobalConfig.Instance;
 
             Write("Provide current occupancy of facility: ");
@@ -196,6 +197,15 @@ namespace GalacticAlienAdministrationSystem
             facilityReturn = FacilityFactory.CreateFacility(type, facilityCapacity, facilityLocation, facilityOccupancy);
             WriteLine($"Created Facility ID: {facilityReturn.facilityID} with a capacity of {facilityReturn.capacity}");
             ReadKey();
+
+            // Decorator
+            EnvironmentalControlDecorator environmentalControlDecorator = new EnvironmentalControlDecorator(facilityReturn);
+
+            WriteLine($"Facility decorator: {environmentalControlDecorator.GetDetails()}");
+
+
+            ReadKey();
+
 
             return facilityReturn;
 

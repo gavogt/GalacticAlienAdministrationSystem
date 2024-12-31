@@ -39,7 +39,7 @@ namespace GalacticAlienAdministrationSystem
 
         public void BookingCreateApprovalCheck()
         {
-
+            // Observers
             GalacticTelepathyMessenger galacticTelepathy = new GalacticTelepathyMessenger();
             CosmicEmail cosmicEmail = new CosmicEmail();
 
@@ -53,6 +53,11 @@ namespace GalacticAlienAdministrationSystem
 
             UpdateBookingStatus(bookings, "Pending");
             UpdateBookingStatus(bookings2, "Approved");
+
+            // Decorator
+            VipProtocolDecorator vipProtocolDecorator = new VipProtocolDecorator(bookings);
+
+            Console.WriteLine($"{vipProtocolDecorator.GetDetails()}");
 
             MenuDisplay.PressAnyKey();
 

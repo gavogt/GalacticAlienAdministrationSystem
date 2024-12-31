@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GalacticAlienAdministrationSystem
 {
-    public class Booking
+    public class Booking : IDecorator
     {
         private static int _bookCounter = 1;
         public int bookingID { get; set; }
@@ -43,6 +43,11 @@ namespace GalacticAlienAdministrationSystem
             string update;
             update = $"Booking ID: {bookingID}\nFacility ID: {_facilityID}\nUser ID: {_userID}\nBooking Status: {bookingStatus}";
             return update;
+        }
+
+        public string GetDetails()
+        {
+            return "I am a base booking";
         }
     }
 }
