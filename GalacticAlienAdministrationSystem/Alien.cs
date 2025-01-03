@@ -7,25 +7,25 @@ using static System.Console;
 
 namespace GalacticAlienAdministrationSystem
 {
-    public class Alien
+    public class Alien : ISpecies
     {
         private static int _AlienIDCounter = 0;
         private string _name;
         private string _personalData;
         private string _species;
-        private string _specialRequirements;
+        private string _alienPowers;
         private string _visitDuration;
         private bool _isClearedForEarth = false;
         private int _ID;
 
-        public Alien(string name, string personalData, string species, string specialRequirements, string visitDuration)
+        public Alien(string name, string personalData, string species, string alienPowers, string visitDuration)
         {
             IncrementIDCounter();
             _ID = _AlienIDCounter;
             _name = name;
             _personalData = personalData;
             _species = species;
-            _specialRequirements = specialRequirements;
+            _alienPowers = alienPowers;
             _visitDuration = visitDuration;
 
         }
@@ -92,6 +92,21 @@ namespace GalacticAlienAdministrationSystem
                 WriteLine("Facility does not have the capacity");
             }
 
+        }
+
+        public string GetSpecies()
+        {
+            return _species;
+        }
+
+        public string GetAlienPowers()
+        {
+            return _alienPowers;
+        }
+
+        public void Communicate(string message)
+        {
+            WriteLine($"Alien is communicating: {message}");
         }
     }
 }

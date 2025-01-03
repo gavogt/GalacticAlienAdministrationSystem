@@ -14,9 +14,9 @@ namespace GalacticAlienAdministrationSystem
         public Alien _alien;
         public List<Alien> alienList = new List<Alien>();
 
-        public Alien RegisterAlien(string name, string personalData, string species, string specialRequirements, string visitDuration)
+        public Alien RegisterAlien(string name, string personalData, string species, string alienPowers, string visitDuration)
         {
-            Alien alien = new Alien(name, personalData, species, specialRequirements, visitDuration);
+            Alien alien = new Alien(name, personalData, species, alienPowers, visitDuration);
 
             return alien;
         }
@@ -60,11 +60,11 @@ namespace GalacticAlienAdministrationSystem
             string consoleName = ConsoleUI.PromptForString("What's the Alien's name?");
             string consolePersonalData = ConsoleUI.PromptForString("What's the Alien's personal data?");
             string consoleSpecies = ConsoleUI.PromptForString("What's the Alien's species?");
-            string consoleSpecialRequirements = ConsoleUI.PromptForString("What's the Alien's special requirements?");
+            string alienPowers = ConsoleUI.PromptForString("What's the Alien's special requirements?");
             string consoleVisitDuration = ConsoleUI.PromptForString("What's the Alien's visit duration?");
 
             AlienRegistrationService alienRegistrationService = new AlienRegistrationService();
-            alien = alienRegistrationService.RegisterAlien(consoleName, consolePersonalData, consoleSpecies, consoleSpecialRequirements, consoleVisitDuration);
+            alien = alienRegistrationService.RegisterAlien(consoleName, consolePersonalData, consoleSpecies, alienPowers, consoleVisitDuration);
 
             Clear();
             WriteLine($"Registered Alien: {alien.GetName()}");

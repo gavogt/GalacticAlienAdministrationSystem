@@ -12,6 +12,7 @@ namespace GalacticAlienAdministrationSystem
     {
         public void RunSimulation()
         { 
+
             MenuDisplay.RunMenuSelection();
 
         }    

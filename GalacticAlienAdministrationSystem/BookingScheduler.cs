@@ -15,7 +15,7 @@ namespace GalacticAlienAdministrationSystem
 
         }
 
-        public void BookingCommand()
+        public void ExecuteBookingCommand()
         {
             command.Execute();
         }

@@ -51,7 +51,6 @@ namespace GalacticAlienAdministrationSystem
         {
             BookingScheduler bookingScheduler = new BookingScheduler();
 
-
             int choice;
             WriteLine("Please select an option from the menu below:");
             WriteLine("1. Create a new booking");
@@ -66,7 +65,7 @@ namespace GalacticAlienAdministrationSystem
 
                     ICommand createBookingCommand = new CreateBookingCommand(booking, bookingManager);
                     bookingScheduler.SetBookingCommand(createBookingCommand);
-                    bookingScheduler.BookingCommand();
+                    bookingScheduler.ExecuteBookingCommand();
 
                     break;
                 case 2:
@@ -84,7 +83,7 @@ namespace GalacticAlienAdministrationSystem
 
                     ICommand removeBookingCommand = new RemoveBookingCommand(bookingRemove, bookingManager);
                     bookingScheduler.SetBookingCommand(removeBookingCommand);
-                    bookingScheduler.BookingCommand();
+                    bookingScheduler.ExecuteBookingCommand();
 
                     break;
                 default:
@@ -168,7 +167,6 @@ namespace GalacticAlienAdministrationSystem
                     facilityManager.DisplayCurrentOccupancy(frs.ReturnFacility());
                     ReadKey();
                     break;
-
                 default:
                     WriteLine("Invalid selection");
                     break;
@@ -259,7 +257,7 @@ namespace GalacticAlienAdministrationSystem
 
         public static void PressAnyKey()
         {
-            WriteLine("Press any key to continue");
+            WriteLine("Press any key to continue...");
             ReadKey();
 
         }
