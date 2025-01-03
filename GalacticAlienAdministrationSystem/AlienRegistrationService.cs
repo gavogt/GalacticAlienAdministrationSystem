@@ -16,7 +16,7 @@ namespace GalacticAlienAdministrationSystem
 
         public Alien RegisterAlien(string name, string personalData, string species, string alienPowers, string visitDuration)
         {
-            Alien alien = new Alien(name, personalData, species, alienPowers, visitDuration);
+            var alien = AlienFactory.CreateAlien(name, personalData, species, alienPowers, visitDuration);
 
             return alien;
         }
@@ -24,6 +24,10 @@ namespace GalacticAlienAdministrationSystem
         public List<Alien> AddAlienToList(Alien alien, List<Alien> alienList)
         {
             alienList.Add(alien);
+            Clear();
+            WriteLine($"Alien's name is {alien.GetName()}, and was added to the list");
+            WriteLine($"Alien species is a {alien.GetSpecies()}");
+            MenuDisplay.PressAnyKey();
             return alienList;
         }
 
@@ -57,17 +61,17 @@ namespace GalacticAlienAdministrationSystem
         {
             Alien alien;
 
-            string consoleName = ConsoleUI.PromptForString("What's the Alien's name?");
-            string consolePersonalData = ConsoleUI.PromptForString("What's the Alien's personal data?");
-            string consoleSpecies = ConsoleUI.PromptForString("What's the Alien's species?");
-            string alienPowers = ConsoleUI.PromptForString("What's the Alien's special requirements?");
-            string consoleVisitDuration = ConsoleUI.PromptForString("What's the Alien's visit duration?");
+            string consoleName = ConsoleUI.PromptForString("What's the Alien's name: ");
+            string consolePersonalData = ConsoleUI.PromptForString("What's the Alien's personal data: ");
+            WriteLine("Species can be: 'Time Traveler', 'Alien', 'Reptilian'");
+            string consoleSpecies = ConsoleUI.PromptForString("What's the Alien's species: ");
+            string alienPowers = ConsoleUI.PromptForString("What's the Alien's special requirements: ");
+            string consoleVisitDuration = ConsoleUI.PromptForString("What's the Alien's visit duration: ");
 
             AlienRegistrationService alienRegistrationService = new AlienRegistrationService();
             alien = alienRegistrationService.RegisterAlien(consoleName, consolePersonalData, consoleSpecies, alienPowers, consoleVisitDuration);
 
             Clear();
-            WriteLine($"Registered Alien: {alien.GetName()}");
 
             return alien;
         }

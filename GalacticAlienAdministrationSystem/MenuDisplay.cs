@@ -44,6 +44,7 @@ namespace GalacticAlienAdministrationSystem
             WriteLine("\t 8. Search facility by Environment Type");
             WriteLine("\t 9. Exit");
             WriteLine("\t10. Display current occupancy of facilities");
+            WriteLine("-------------------------------------------------");
 
         }
 

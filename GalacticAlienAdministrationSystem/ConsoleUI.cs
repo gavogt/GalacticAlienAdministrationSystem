@@ -16,7 +16,7 @@ namespace GalacticAlienAdministrationSystem
 
             string consoleInput;
 
-            WriteLine(message);
+            Write(message);
 
             consoleInput = ReadLine();
 

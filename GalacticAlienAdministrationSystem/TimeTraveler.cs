@@ -14,7 +14,7 @@ namespace GalacticAlienAdministrationSystem
 
         public void TimeTravel()
         {
-            Console.WriteLine("Time Travelers can travel through time and space.");
+            Console.WriteLine("Time Travelers experience synchronicity in xeno singularity simulations.");
         }
 
         public new void Communicate(string message)
