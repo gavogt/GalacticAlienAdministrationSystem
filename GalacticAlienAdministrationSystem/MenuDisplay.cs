@@ -39,11 +39,66 @@ namespace GalacticAlienAdministrationSystem
             WriteLine("\t 3. List all Alien Groups");
             WriteLine("\t 4. List all booking");
             WriteLine("\t 5. Create a new Facility");
-            WriteLine("\t 6. Create a new Booking");
+            WriteLine("\t 6. Create or Remove a new Booking");
             WriteLine("\t 7. Search facility by capacity");
             WriteLine("\t 8. Search facility by Environment Type");
             WriteLine("\t 9. Exit");
             WriteLine("\t10. Display current occupancy of facilities");
+
+        }
+
+        public static void BookingMenu(BookingManager bookingManager)
+        {
+            BookingScheduler bookingScheduler = new BookingScheduler();
+
+
+            int choice;
+            WriteLine("Please select an option from the menu below:");
+            WriteLine("1. Create a new booking");
+            WriteLine("2. Remove a booking");
+            int.TryParse(ReadLine(), out choice);
+
+            switch (choice)
+            {
+                case 1:
+                    WriteLine("Creating a new booking");
+                    WriteLine("Enter Facility ID");
+                    int.TryParse(ReadLine(), out int facilityID);
+                    WriteLine("Enter user ID");
+                    int.TryParse(ReadLine(), out int userID);
+                    Booking booking = new Booking(facilityID, userID);
+
+                    ICommand createBookingCommand = new TurnOnBookingCommand(booking);
+                    bookingScheduler.SetBookingCommand(createBookingCommand);
+                    bookingScheduler.BookingCommand();
+
+                    bookingManager.AddBookingToAList(booking);
+
+                    break;
+                case 2:
+                    WriteLine("Please supply the booking ID");
+                    int.TryParse(ReadLine(), out int bookingID);
+                    Booking bookingRemove = bookingManager.RetrieveBooking(bookingID);
+
+                    try
+                    {
+                        bookingManager.RemoveBookingFromList(bookingRemove);
+                    }
+                    catch
+                    {
+                        WriteLine("Booking not found in case 2 book manager");
+
+                        MenuDisplay.PressAnyKey();
+                    }
+                    ICommand removeBookingCommand = new TurnOffBookingCommand(bookingRemove);
+                    bookingScheduler.SetBookingCommand(removeBookingCommand);
+                    bookingScheduler.BookingCommand();
+
+                    break;
+                default:
+                    WriteLine("Invalid selection");
+                    break;
+            }
 
         }
 
@@ -70,7 +125,8 @@ namespace GalacticAlienAdministrationSystem
                     frs.RegisterFacility(facilityCreated);
                     break;
                 case 6:
-                    bookingManager.BookingCreateApprovalCheck();
+                    BookingMenu(bookingManager);
+                    // bookingManager.BookingCreateApprovalCheck();
                     break;
                 case 7:
                     if (listOfAliens != null)

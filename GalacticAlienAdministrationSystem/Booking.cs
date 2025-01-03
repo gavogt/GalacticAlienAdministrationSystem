@@ -22,6 +22,7 @@ namespace GalacticAlienAdministrationSystem
             _facilityID = facilityID;
             _userID = userID;
             bookingStatus = "Pending";
+            Console.WriteLine($"Booking ID is {bookingID}");
         }
 
         public Booking(int facilityID, int userID, DateTime startDateTime, DateTime endDateTime)
@@ -49,5 +50,19 @@ namespace GalacticAlienAdministrationSystem
         {
             return "I am a base booking";
         }
+
+        public void ScheduleBooking()
+        {
+
+            Console.WriteLine("Booking has been scheduled");
+            MenuDisplay.PressAnyKey();
+        }
+
+        public void RemoveBooking()
+        {
+            Console.WriteLine("Booking has been removed");
+            MenuDisplay.PressAnyKey();
+        }
+
     }
 }

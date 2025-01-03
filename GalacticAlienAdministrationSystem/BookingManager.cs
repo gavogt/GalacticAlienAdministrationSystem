@@ -25,6 +25,31 @@ namespace GalacticAlienAdministrationSystem
 
         }
 
+        public Booking RetrieveBooking(int bookingID)
+        {
+
+            Booking booking = _bookingsList.Find(b => b.bookingID == bookingID);
+
+            if (booking == null)
+            {
+                Console.WriteLine("Booking not found.");
+                MenuDisplay.PressAnyKey();
+                return null;
+            }
+
+            return booking;
+        }
+
+        public void AddBookingToAList(Booking booking)
+        {
+            _bookingsList.Add(booking);
+        }
+
+        public void RemoveBookingFromList(Booking booking)
+        {
+            _bookingsList.Remove(booking);
+        }
+
         public void ApproveBooking(IFacility facility, Booking booking)
         {
             if (facility.IsApproved())
