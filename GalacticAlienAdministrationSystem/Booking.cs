@@ -50,19 +50,5 @@ namespace GalacticAlienAdministrationSystem
         {
             return "I am a base booking";
         }
-
-        public void ScheduleBooking()
-        {
-
-            Console.WriteLine("Booking has been scheduled");
-            MenuDisplay.PressAnyKey();
-        }
-
-        public void RemoveBooking()
-        {
-            Console.WriteLine("Booking has been removed");
-            MenuDisplay.PressAnyKey();
-        }
-
     }
 }

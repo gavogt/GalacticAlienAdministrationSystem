@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
+using static System.Console;
 
 namespace GalacticAlienAdministrationSystem
 {
@@ -36,6 +37,18 @@ namespace GalacticAlienAdministrationSystem
                 MenuDisplay.PressAnyKey();
                 return null;
             }
+
+            return booking;
+        }
+
+        public Booking CreateAndReturnBooking()
+        {
+            WriteLine("Creating a new booking");
+            WriteLine("Enter Facility ID");
+            int.TryParse(ReadLine(), out int facilityID);
+            WriteLine("Enter user ID");
+            int.TryParse(ReadLine(), out int userID);
+            Booking booking = new Booking(facilityID, userID);
 
             return booking;
         }
