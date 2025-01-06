@@ -10,8 +10,9 @@ namespace GalacticAlienAdministrationSystem
     {
         public void CreateBookingSchedule()
         {
+            Booking booking = null;
             BookingManager bookingManager = new BookingManager();
-            MenuDisplay.BookingMenu(bookingManager);
+            MenuDisplay.BookingMenu(bookingManager, booking);
 
             
         }

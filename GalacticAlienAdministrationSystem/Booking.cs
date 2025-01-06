@@ -12,9 +12,15 @@ namespace GalacticAlienAdministrationSystem
         public int bookingID { get; set; }
         private int _facilityID;
         private int _userID;
-        public string bookingStatus = "Not set";
+        public string bookingStatus;
         public DateTime startDateTime;
         public DateTime endDateTime;
+        public IBookingStatus bookingState;
+
+        public Booking()
+        {
+
+        }
 
         public Booking(int facilityID, int userID)
         {
@@ -32,6 +38,29 @@ namespace GalacticAlienAdministrationSystem
             _userID = userID;
             this.startDateTime = startDateTime;
             this.endDateTime = endDateTime;
+        }
+
+        public void SetBookingState(IBookingStatus newState)
+        {
+            bookingState = newState;
+        }
+
+        public void ApproveBookingState()
+        {
+            bookingStatus = "Approved";
+            bookingState.Approve();
+        }
+
+        public void CloseBookingState()
+        {
+            bookingStatus = "Closed";
+            bookingState.Close();
+        }
+
+        public void DenyBookingState()
+        {
+            bookingStatus = "Denied";
+            bookingState.Deny();
         }
 
         public static int BookingCounter()

@@ -53,6 +53,11 @@ namespace GalacticAlienAdministrationSystem
             return booking;
         }
 
+        public List<Booking> ReturnBookingList()
+        {
+            return _bookingsList;
+        }
+
         public void AddBookingToAList(Booking booking)
         {
             _bookingsList.Add(booking);

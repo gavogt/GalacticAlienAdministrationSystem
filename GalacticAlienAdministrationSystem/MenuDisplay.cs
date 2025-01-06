@@ -19,9 +19,9 @@ namespace GalacticAlienAdministrationSystem
             Clear();
 
             MenuList();
-            while (menuSelection < 1 || menuSelection > 11)
+            while (menuSelection < 1 || menuSelection > 12)
             {
-                Write("\nEnter your menu selection #1 - #11: ");
+                Write("\nEnter your menu selection #1 - #12: ");
                 int.TryParse(ReadLine(), out menuSelection);
             }
 
@@ -45,11 +45,12 @@ namespace GalacticAlienAdministrationSystem
             WriteLine("\t 9. Exit");
             WriteLine("\t10. Display current occupancy of facilities");
             WriteLine("\t11. Create booking with Notifications and Species Check");
+            WriteLine("\t12. Set booking state");
             WriteLine("-------------------------------------------------");
 
         }
 
-        public static void BookingMenu(BookingManager bookingManager)
+        public static Booking BookingMenu(BookingManager bookingManager, Booking booking)
         {
             BookingCommandScheduler bookingScheduler = new BookingCommandScheduler();
 
@@ -66,12 +67,13 @@ namespace GalacticAlienAdministrationSystem
             {
                 case 1:
 
-                    Booking booking = bookingManager.CreateAndReturnBooking();
+                    booking = bookingManager.CreateAndReturnBooking();
 
                     ICommand createBookingCommand = new CreateBookingCommand(booking, bookingManager);
                     bookingScheduler.SetBookingCommand(createBookingCommand);
                     bookingScheduler.ExecuteBookingCommand();
 
+                    return booking;
                     break;
                 case 2:
                     WriteLine("Please supply the booking ID");
@@ -89,15 +91,17 @@ namespace GalacticAlienAdministrationSystem
                     ICommand removeBookingCommand = new RemoveBookingCommand(bookingRemove, bookingManager);
                     bookingScheduler.SetBookingCommand(removeBookingCommand);
                     bookingScheduler.ExecuteBookingCommand();
-
+                    return bookingRemove;
                     break;
                 default:
                     WriteLine("Invalid selection");
                     break;
             }
+
+            return booking;
         }
 
-        public static void HandleMenuSelection(int menuSelection, AlienRegistrationService ars, List<Alien> listOfAliens, FacilityManager facilityManager, BookingManager bookingManager, AlienLists al, FacilityRegistrationService frs)
+        public static void HandleMenuSelection(int menuSelection, AlienRegistrationService ars, List<Alien> listOfAliens, FacilityManager facilityManager, BookingManager bookingManager, AlienLists al, FacilityRegistrationService frs, Booking booking)
         {
 
             switch (menuSelection)
@@ -120,7 +124,7 @@ namespace GalacticAlienAdministrationSystem
                     frs.RegisterFacility(facilityCreated);
                     break;
                 case 6:
-                    BookingMenu(bookingManager);
+                    booking = BookingMenu(bookingManager, booking);
                     break;
                 case 7:
                     if (listOfAliens != null)
@@ -184,6 +188,17 @@ namespace GalacticAlienAdministrationSystem
                     taskFacadeManager.ExecuteTask(facadeAlien);
                     ReadKey();
                     break;
+                case 12:
+                    // state pattern
+                    // work in progress
+                    BookingApprovalState bookingApprovalState = new BookingApprovalState();
+                    foreach(Booking books in bookingManager.ReturnBookingList())
+                    {                        
+                        booking.SetBookingState(bookingApprovalState);
+                        booking.ApproveBookingState();
+                    }             
+                    ReadKey();
+                    break;
                 default:
                     WriteLine("Invalid selection");
                     break;
@@ -198,6 +213,7 @@ namespace GalacticAlienAdministrationSystem
             BookingManager bookingManager = new BookingManager();
             AlienLists al = new AlienLists(listOfAliens);
             FacilityRegistrationService frs = new FacilityRegistrationService();
+            Booking booking = new Booking();
 
             LoadingTimers.LoadingTimer();
 
@@ -205,7 +221,7 @@ namespace GalacticAlienAdministrationSystem
             {
                 int choice = Menu();
 
-                HandleMenuSelection(choice, ars, listOfAliens, facilityManager, bookingManager, al, frs);
+                HandleMenuSelection(choice, ars, listOfAliens, facilityManager, bookingManager, al, frs, booking);
             }
         }
 
