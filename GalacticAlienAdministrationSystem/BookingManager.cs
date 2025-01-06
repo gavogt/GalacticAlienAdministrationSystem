@@ -48,7 +48,7 @@ namespace GalacticAlienAdministrationSystem
             int.TryParse(ReadLine(), out int facilityID);
             WriteLine("Enter user ID");
             int.TryParse(ReadLine(), out int userID);
-            Booking booking = new Booking(facilityID, userID);
+            Booking booking = new Booking(facilityID, userID, DateTime.Now, DateTime.Now.AddHours(1));
 
             return booking;
         }
@@ -71,7 +71,7 @@ namespace GalacticAlienAdministrationSystem
             }
             else
             {
-                Console.WriteLine("Facility is not approved. Cannot approve booking.");
+                WriteLine("Facility is not approved. Cannot approve booking.");
             }
         }
 

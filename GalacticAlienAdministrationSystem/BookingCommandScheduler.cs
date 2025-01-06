@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GalacticAlienAdministrationSystem
 {
-    public class BookingScheduler
+    public class BookingCommandScheduler
     {
         ICommand command;
         public void SetBookingCommand(ICommand command)
