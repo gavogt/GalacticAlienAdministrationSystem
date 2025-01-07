@@ -42,10 +42,10 @@ namespace GalacticAlienAdministrationSystem
             WriteLine("\t 6. Create or Remove a new Booking");
             WriteLine("\t 7. Search facility by capacity");
             WriteLine("\t 8. Search facility by Environment Type");
-            WriteLine("\t 9. Exit");
-            WriteLine("\t10. Display current occupancy of facilities");
-            WriteLine("\t11. Create booking with Notifications and Species Check");
-            WriteLine("\t12. Set booking state");
+            WriteLine("\t 9. Display current occupancy of facilities");
+            WriteLine("\t10. Create booking with Notifications and Species Check");
+            WriteLine("\t11. Set booking state");
+            WriteLine("\t12. Exit");
             WriteLine("-------------------------------------------------");
 
         }
@@ -60,7 +60,7 @@ namespace GalacticAlienAdministrationSystem
             WriteLine("Please select an option from the menu below:");
             WriteLine(" 1. Create a new booking");
             WriteLine(" 2. Remove a booking");
-            WriteLine("--------------------------------------------");
+            Write("Enter your selection: ");
             int.TryParse(ReadLine(), out choice);
 
             switch (choice)
@@ -76,7 +76,7 @@ namespace GalacticAlienAdministrationSystem
                     return booking;
                     break;
                 case 2:
-                    WriteLine("Please supply the booking ID");
+                    Write("Please supply the booking ID: ");
                     int.TryParse(ReadLine(), out int bookingID);
 
                     Booking bookingRemove = bookingManager.RetrieveBooking(bookingID);
@@ -169,13 +169,10 @@ namespace GalacticAlienAdministrationSystem
 
                     break;
                 case 9:
-                    Environment.Exit(0);
-                    break;
-                case 10:
                     facilityManager.DisplayCurrentOccupancy(frs.ReturnFacility());
                     ReadKey();
                     break;
-                case 11:
+                case 10:
                     // facade pattern
                     var facadeAlien = ars.AddAlien();
                     ars.AddAlienToList(facadeAlien, listOfAliens);
@@ -188,16 +185,45 @@ namespace GalacticAlienAdministrationSystem
                     taskFacadeManager.ExecuteTask(facadeAlien);
                     ReadKey();
                     break;
-                case 12:
+                case 11:
                     // state pattern
-                    // work in progress
-                    BookingApprovalState bookingApprovalState = new BookingApprovalState();
-                    foreach(Booking books in bookingManager.ReturnBookingList())
-                    {                        
-                        booking.SetBookingState(bookingApprovalState);
-                        booking.ApproveBookingState();
-                    }             
+                    Write("Enter Admin ID: ");
+                    int.TryParse(ReadLine(), out int adminID);
+                    Administrator admin = new Administrator(adminID);
+
+                    if (admin.Authenticate(adminID))
+                    {
+                        WriteLine("1. Approve booking");
+                        WriteLine("2. Close booking");
+                        WriteLine("3. Deny booking");
+                        Write("Enter your selection: ");
+                        int.TryParse(ReadLine(), out int choice);
+
+                        switch (choice)
+                        {
+                            case 1:
+                                BookingApprovalState bookingApprovalState = new BookingApprovalState();
+                                booking.SetBookingState(bookingApprovalState);
+                                booking.ApproveBookingState();
+                                break;
+                            case 2:
+                                BookingClosedState bookingClosedState = new BookingClosedState();
+                                booking.SetBookingState(bookingClosedState);
+                                booking.CloseBookingState();
+                                break;
+                            case 3:
+                                BookingDeniedState bookingDeniedState = new BookingDeniedState();
+                                booking.SetBookingState(bookingDeniedState);
+                                booking.DenyBookingState();
+                                break;
+                        }
+                    }
+                    else { WriteLine("Invalid Admin ID"); }
+
                     ReadKey();
+                    break;
+                case 12:
+                    Environment.Exit(0);
                     break;
                 default:
                     WriteLine("Invalid selection");

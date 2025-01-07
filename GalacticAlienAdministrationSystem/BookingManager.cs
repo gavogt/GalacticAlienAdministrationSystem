@@ -44,9 +44,9 @@ namespace GalacticAlienAdministrationSystem
         public Booking CreateAndReturnBooking()
         {
             WriteLine("Creating a new booking");
-            WriteLine("Enter Facility ID");
+            Write("Enter Facility ID: ");
             int.TryParse(ReadLine(), out int facilityID);
-            WriteLine("Enter user ID");
+            Write("Enter user ID: ");
             int.TryParse(ReadLine(), out int userID);
             Booking booking = new Booking(facilityID, userID, DateTime.Now, DateTime.Now.AddHours(1));
 
